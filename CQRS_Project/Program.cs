@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SaleContext>();
 builder.Services.AddScoped<GetProductQueryHandler>();
 builder.Services.AddScoped<GetCategoryQueryHandler>();
+builder.Services.AddScoped<CreateCategoryCommandHandler>();
+builder.Services.AddScoped<CreateProductCommandHandler>();
+builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
 
 builder.Services.AddControllersWithViews();
 
