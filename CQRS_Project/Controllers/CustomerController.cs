@@ -32,5 +32,25 @@ namespace CQRS_Project.Controllers
             await _mediator.Send(command);
             return View();
         }
+
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            await _mediator.Send(new RemoveCustomerCommand(id));
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateCustomer(int id)
+        {
+            var values = await _mediator.Send(new GetCustomerByIdQuery(id));
+            return View(values);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCustomer(UpdateCustomerCommand command)
+        {
+            await _mediator.Send(command);
+            return RedirectToAction("Index");
+        }
     }
 }
